@@ -1,6 +1,7 @@
 const container = document.querySelector("#container");
 const start = document.querySelector("#start");
 let gridLength;
+let opacity = 0;
 
 
 
@@ -21,12 +22,13 @@ const resetGrid = () => {
 	while (container.firstChild) {
 		container.removeChild(container.lastChild);
 	}
+	opacity = 0;
 
 	getGridSize();
 	setGrid(gridLength);
 	const grids = document.querySelectorAll(".grid");
 	grids.forEach((grid) => {
-		grid.addEventListener("mouseover", (e) => {setRandomColor(e.target)});
+		grid.addEventListener("mouseover", (e) => {setRandomColorAndOpacity(e.target)});
 		grid.addEventListener("mouseleave", (e) => {e.target.style.backgroundColor = ""});
 	});
 }
@@ -38,12 +40,16 @@ const getGridSize = () => {
 
 	gridLength = Math.floor(gridLength);
 
-	
 }
 
-const setRandomColor = (grid) => {
+const setRandomColorAndOpacity = (grid) => {
 	const randomColor = Math.floor(Math.random()*16777215).toString(16);
 	grid.style.backgroundColor = "#" + randomColor;
+	grid.style.opacity = opacity / 100;
+
+	if (opacity < 100) {
+		opacity += 10;
+	}
 }
 
 start.addEventListener("click", resetGrid);
