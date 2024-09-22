@@ -24,6 +24,11 @@ const resetGrid = () => {
 
 	getGridSize();
 	setGrid(gridLength);
+	const grids = document.querySelectorAll(".grid");
+	grids.forEach((grid) => {
+		grid.addEventListener("mouseover", (e) => {setRandomColor(e.target)});
+		grid.addEventListener("mouseleave", (e) => {e.target.style.backgroundColor = ""});
+	});
 }
 
 const getGridSize = () => {
@@ -36,5 +41,9 @@ const getGridSize = () => {
 	
 }
 
-setGrid(16);
+const setRandomColor = (grid) => {
+	const randomColor = Math.floor(Math.random()*16777215).toString(16);
+	grid.style.backgroundColor = "#" + randomColor;
+}
+
 start.addEventListener("click", resetGrid);
