@@ -27,7 +27,3 @@
 	border: 1px solid purple;
 	flex: 1;
 }
-
-.grid:hover {
-	background-color: red;
-}

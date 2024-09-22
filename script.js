@@ -29,7 +29,6 @@ const resetGrid = () => {
 	const grids = document.querySelectorAll(".grid");
 	grids.forEach((grid) => {
 		grid.addEventListener("mouseover", (e) => {setRandomColorAndOpacity(e.target)});
-		grid.addEventListener("mouseleave", (e) => {e.target.style.backgroundColor = ""});
 	});
 }
 
